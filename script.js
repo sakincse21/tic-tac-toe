@@ -14,34 +14,41 @@ let moves = 1;
 function buttonClick(buttonID) {
     let winCheck = false;
     const cell = document.getElementById(buttonID);
-    if (moves % 2 != 0) {
-        cell.innerText = 'X';
-    } else {
-        cell.innerText = 'O';
-    }
-
-    for (let i = 0; i < winSets.length; i++) {
-        const cellCheck1 = document.getElementById(parseInt(winSets[i][0])).innerText;
-        const cellCheck2 = document.getElementById(parseInt(winSets[i][1])).innerText;
-        const cellCheck3 = document.getElementById(parseInt(winSets[i][2])).innerText;
-
-        if ((cellCheck1 != '') && (cellCheck1 == cellCheck2) && (cellCheck2 == cellCheck3)) {
-            winCheck = true;
-            break;
-        }
-    }
-    moves++;
-    if (winCheck == true) {
+    if (cell.innerText == '') {
         if (moves % 2 != 0) {
-            alert('player2 won');
-            reset();
+            cell.innerText = 'X';
         } else {
-            alert('player1 won');
-            reset();
+            cell.innerText = 'O';
         }
-    }
-    if (moves >= 9 && winCheck == false) {
-        alert('match draw');
+
+        for (let i = 0; i < winSets.length; i++) {
+            const cellCheck1 = document.getElementById(parseInt(winSets[i][0])).innerText;
+            const cellCheck2 = document.getElementById(parseInt(winSets[i][1])).innerText;
+            const cellCheck3 = document.getElementById(parseInt(winSets[i][2])).innerText;
+
+            if ((cellCheck1 != '') && (cellCheck1 == cellCheck2) && (cellCheck2 == cellCheck3)) {
+                winCheck = true;
+                break;
+            }
+        }
+        moves++;
+        if (winCheck == true) {
+            moves--;
+            if (moves % 2 != 0) {
+                setTimeout(() => {
+                    alert('player1 won');
+                    reset();
+                }, 500);
+            } else {
+                setTimeout(() => {
+                    alert('player2 won');
+                    reset();
+                }, 500);
+            }
+        }
+        if (moves >= 9 && winCheck == false) {
+            alert('match draw');
+        }
     }
 }
 
