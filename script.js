@@ -56,15 +56,12 @@ function buttonClick(buttonID) {
             if (winCheck == true) {
                 moves--;
                 if (moves % 2 != 0) {
-                    setNamesNull();
                     document.getElementById('scoreBoard').innerText=player1Name+' Won...!';
                 } else {
-                    setNamesNull();
                     document.getElementById('scoreBoard').innerText=player2Name+' Won...!';
                 }
             }
             if (moves >= 10 && winCheck == false) {
-                setNamesNull();
                 document.getElementById('scoreBoard').innerText='Match Draw';
             }
         }
