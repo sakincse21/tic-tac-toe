@@ -10,45 +10,66 @@ const winSets = [
 ]
 
 let moves = 1;
+let player1Name = '';
+let player2Name = '';
+
+const submitButton = document.getElementById('submitButton');
+submitButton.addEventListener('click', function () {
+    reset();
+    document.getElementById('scoreBoard').innerText='Game is on!'
+    player1Name = document.getElementById('playerOne').value;
+    player2Name = document.getElementById('playerTwo').value;
+    if (player1Name == '' || player2Name == '') {
+        alert('Please add your names...');
+    }
+})
+
+const resetButton=document.getElementById('resetButton');
+resetButton.addEventListener('click',function(){
+    reset();
+    setNamesNull();
+    document.getElementById('scoreBoard').innerText='Welcome!';
+})
 
 function buttonClick(buttonID) {
-    let winCheck = false;
-    const cell = document.getElementById(buttonID);
-    if (cell.innerText == '') {
-        if (moves % 2 != 0) {
-            cell.innerText = 'X';
-        } else {
-            cell.innerText = 'O';
-        }
-
-        for (let i = 0; i < winSets.length; i++) {
-            const cellCheck1 = document.getElementById(parseInt(winSets[i][0])).innerText;
-            const cellCheck2 = document.getElementById(parseInt(winSets[i][1])).innerText;
-            const cellCheck3 = document.getElementById(parseInt(winSets[i][2])).innerText;
-
-            if ((cellCheck1 != '') && (cellCheck1 == cellCheck2) && (cellCheck2 == cellCheck3)) {
-                winCheck = true;
-                break;
-            }
-        }
-        moves++;
-        if (winCheck == true) {
-            moves--;
+    if (player1Name != '' && player2Name != '') {
+        let winCheck = false;
+        const cell = document.getElementById(buttonID);
+        if (cell.innerText == '') {
             if (moves % 2 != 0) {
-                setTimeout(() => {
-                    alert('player1 won');
-                    reset();
-                }, 500);
+                cell.innerText = 'X';
             } else {
-                setTimeout(() => {
-                    alert('player2 won');
-                    reset();
-                }, 500);
+                cell.innerText = 'O';
+            }
+
+            for (let i = 0; i < winSets.length; i++) {
+                const cellCheck1 = document.getElementById(parseInt(winSets[i][0])).innerText;
+                const cellCheck2 = document.getElementById(parseInt(winSets[i][1])).innerText;
+                const cellCheck3 = document.getElementById(parseInt(winSets[i][2])).innerText;
+
+                if ((cellCheck1 != '') && (cellCheck1 == cellCheck2) && (cellCheck2 == cellCheck3)) {
+                    winCheck = true;
+                    break;
+                }
+            }
+            moves++;
+            if (winCheck == true) {
+                moves--;
+                if (moves % 2 != 0) {
+                    setNamesNull();
+                    document.getElementById('scoreBoard').innerText=player1Name+' Won...!';
+                } else {
+                    setNamesNull();
+                    document.getElementById('scoreBoard').innerText=player2Name+' Won...!';
+                }
+            }
+            if (moves >= 10 && winCheck == false) {
+                setNamesNull();
+                document.getElementById('scoreBoard').innerText='Match Draw';
             }
         }
-        if (moves >= 9 && winCheck == false) {
-            alert('match draw');
-        }
+    }else{
+        alert('Please add players name...');
     }
 }
 
@@ -86,4 +107,9 @@ function reset() {
     for (let i = 0; i < allCells.length; i++) {
         allCells[i].innerText = '';
     }
+}
+
+function setNamesNull(){
+    document.getElementById('playerOne').value='';
+    document.getElementById('playerTwo').value='';
 }

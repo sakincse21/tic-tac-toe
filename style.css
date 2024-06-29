@@ -1,3 +1,16 @@
+body{
+    margin: 0;
+    width: 100%;
+    padding: 50px 0 50px 0;
+}
+#navBar{
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+.container{
+    margin: auto;
+}
 .cells{
     margin: 5px 5px 5px 5px;
     width: 100px;
@@ -7,4 +20,25 @@
     text-align: center;
     font-size: 56px;
     box-shadow: 5px 5px 6px lightgray;
+}
+#scoreBoard{
+    border: 5px dashed black;
+    border-radius: 10px;
+    box-shadow: 5px 5px 8px lightgrey;
+    margin: auto;
+    margin-bottom: 20px;
+    padding: 10px 10px 10px 10px;
+    width: auto;
+    font-size: 40px;
+}
+.formInput{
+    margin: 10px 10px;
+}
+#submitButton{
+    margin: 10px 10px;
+    width: 30%;
+}
+#resetButton{
+    margin: 10px 10px;
+    width: 30%;
 }
