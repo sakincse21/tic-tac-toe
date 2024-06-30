@@ -16,19 +16,20 @@ let player2Name = '';
 const submitButton = document.getElementById('submitButton');
 submitButton.addEventListener('click', function () {
     reset();
-    document.getElementById('scoreBoard').innerText='Game is on!'
     player1Name = document.getElementById('playerOne').value;
     player2Name = document.getElementById('playerTwo').value;
     if (player1Name == '' || player2Name == '') {
         alert('Please add your names...');
+    } else {
+        document.getElementById('scoreBoard').innerText = 'Game is on!';
     }
 })
 
-const resetButton=document.getElementById('resetButton');
-resetButton.addEventListener('click',function(){
+const resetButton = document.getElementById('resetButton');
+resetButton.addEventListener('click', function () {
     reset();
     setNamesNull();
-    document.getElementById('scoreBoard').innerText='Welcome!';
+    document.getElementById('scoreBoard').innerText = 'Welcome!';
 })
 
 function buttonClick(buttonID) {
@@ -56,16 +57,16 @@ function buttonClick(buttonID) {
             if (winCheck == true) {
                 moves--;
                 if (moves % 2 != 0) {
-                    document.getElementById('scoreBoard').innerText=player1Name+' Won...!';
+                    document.getElementById('scoreBoard').innerText = player1Name + ' Won...!';
                 } else {
-                    document.getElementById('scoreBoard').innerText=player2Name+' Won...!';
+                    document.getElementById('scoreBoard').innerText = player2Name + ' Won...!';
                 }
             }
             if (moves >= 10 && winCheck == false) {
-                document.getElementById('scoreBoard').innerText='Match Draw';
+                document.getElementById('scoreBoard').innerText = 'Match Draw';
             }
         }
-    }else{
+    } else {
         alert('Please add players name...');
     }
 }
@@ -106,7 +107,7 @@ function reset() {
     }
 }
 
-function setNamesNull(){
-    document.getElementById('playerOne').value='';
-    document.getElementById('playerTwo').value='';
+function setNamesNull() {
+    document.getElementById('playerOne').value = '';
+    document.getElementById('playerTwo').value = '';
 }
