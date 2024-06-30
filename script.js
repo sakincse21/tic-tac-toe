@@ -22,6 +22,7 @@ submitButton.addEventListener('click', function () {
         alert('Please add your names...');
     } else {
         document.getElementById('scoreBoard').innerText = 'Game is on!';
+        document.getElementById('rightBox').style.display='block';
     }
 })
 

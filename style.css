@@ -21,6 +21,15 @@ body{
     text-align: center;
     font-size: 56px;
     box-shadow: 5px 5px 6px lightgray;
+    scale: 1;
+    transition: scale 0.5s;
+}
+.cells:hover{
+    scale: 1.05;
+}
+#rightBox{
+    display: none;
+    transition: ease-in;
 }
 #scoreBoard{
     border: 5px dashed black;
